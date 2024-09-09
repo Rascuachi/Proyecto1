@@ -1,9 +1,11 @@
 package com.ita.myapplication
 
+import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,16 +16,34 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Cyan
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role.Companion.Image
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ita.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -61,14 +81,20 @@ class MainActivity : ComponentActivity() {
 //        }
         setContent{
             Column (
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment =  androidx.compose.ui.Alignment.CenterHorizontally//contenedor es columna y ocupa espacio max
             ){
-                Text(text = "simple text")
-                ModifierExample()
-                ModifierExample2()
-                ModifierExample3()
+//                Text(text = "simple text")
+//                ModifierExample()
+//                ModifierExample2()
+//                ModifierExample3()
+                CustomText()
+                Picture()
+                Content1()
+                Content2()
 
             }
         }
@@ -83,9 +109,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {//Funcion
         modifier = modifier
     )
 }
+
+
 //Todo con composable es un fragmento de diseño
 
-@Preview(showBackground = true)//etiqueta no se muestra
+//@Preview(showBackground = true)//etiqueta no se muestra
 @Composable
 fun GreetingPreview() {
     MyApplicationTheme {
@@ -93,7 +121,7 @@ fun GreetingPreview() {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun ModifierExample(){
     Column(
@@ -105,7 +133,7 @@ fun ModifierExample(){
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun ModifierExample2(){
     Column(
@@ -125,7 +153,7 @@ fun clickAction(){//mandar a llamar en main
     println("Column clicked")
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun ModifierExample3(){
     Column(
@@ -143,5 +171,100 @@ fun ModifierExample3(){
         Text(text = "Item 3")
         Text(text = "Item 4")
         Text(text = "Item 5")
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun CustomText(){
+    val gradientColors = listOf(Cyan, Blue, Red)
+    Column() {
+        Text(
+            stringResource(R.string.hello_world_text),
+            color = colorResource(id = R.color.purple_200),
+            fontSize = 28.sp,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.ExtraBold,
+        )
+        Text(
+            stringResource(R.string.hello_world_text),
+            style = TextStyle(Brush.linearGradient(colors = gradientColors))
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+
+fun Picture(){
+    Column (
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Black)
+    ) {
+        Image(
+            modifier = Modifier
+                .fillMaxWidth(),
+            painter = painterResource(R.drawable.android_logo),
+            contentDescription = "Logo Android",
+            contentScale = ContentScale.Crop
+
+        )
+    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Content1(){
+    Card(
+        modifier = Modifier
+            .background(Color.LightGray)
+            .fillMaxWidth()
+            .padding(5.dp)
+    ){
+        Text(text = "This is a title",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(10.dp)
+        )
+
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
+            painter = painterResource(id = R.drawable.android_logo),
+            contentDescription = "Android logo",
+            contentScale = ContentScale.Crop
+        )//end Image
+
+        Text(
+            stringResource(R.string.text_card) ,
+            textAlign = TextAlign.Justify,
+            lineHeight = 18.sp,
+            modifier = Modifier
+                .padding(10.dp)
+        )//end Text
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Content2(){
+    Card(
+        modifier = Modifier
+            .background(Color.LightGray)
+            .fillMaxWidth()
+            .padding(5.dp)
+    ){
+        Text(
+            text = "Mapache",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(10.dp)
+        )//end Text
+
     }
 }
