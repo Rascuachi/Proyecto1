@@ -1,5 +1,6 @@
 package com.ita.myapplication
 
+import androidx.compose.material3.Icon
 import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,10 +19,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -93,11 +99,11 @@ class MainActivity : ComponentActivity() {
 //                ModifierExample3()
                 CustomText()
                 Picture()
-                Content1()
+                //Content1()
                 Content2()
 
-            }
-        }
+            }//end Column
+        }//end setContent
 
     }
 }
@@ -247,7 +253,7 @@ fun Content1(){
         )//end Text
 
     }
-}
+}//end Content1()
 
 @Preview(showBackground = true)
 @Composable
@@ -257,14 +263,103 @@ fun Content2(){
             .background(Color.LightGray)
             .fillMaxWidth()
             .padding(5.dp)
-    ){
-        Text(
-            text = "Mapache",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
+    ) {
+        Row(
             modifier = Modifier
                 .padding(10.dp)
-        )//end Text
+        ) {
+            // Imagen a la izquierda
+            Image(
+                painter = painterResource(id = R.drawable.android_logo),
+                contentDescription = "Android logo",
+                modifier = Modifier
+                    .height(100.dp) // Ajusta el tamaño si es necesario
+                    .width(100.dp),
+                contentScale = ContentScale.Crop
+            )
 
+            // Texto a la derecha de la imagen
+            Column(
+                modifier = Modifier
+                    .padding(start = 10.dp) // Espacio entre la imagen y el texto
+            ) {
+                // Título
+                Text(
+                    text = "Amor a mapache",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+
+                // Texto "te quiero mapache"
+                Text(
+                    text = "Te quiero mapache",
+                    fontSize = 16.sp,
+                    fontStyle = FontStyle.Italic
+                )
+            }
+        }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun BoxExample1() {
+    Box(
+        modifier = Modifier
+            .background(Color.DarkGray)
+            .fillMaxWidth()
+            .padding(5.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.android_logo),
+            contentDescription = "Android Logo",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .fillMaxSize() // Ajustar la imagen para que llene el contenedor
+        )
+
+        // Ajustamos el Row dentro del Box
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp,150.dp),
+            horizontalArrangement = Arrangement.Center
+
+        )
+        {
+            // Ícono
+            Icon(
+                Icons.Filled.AccountBox,
+                contentDescription = "Icon"
+            )
+
+
+            // Texto
+            Text(text = "Text",
+//             textAlign = TextAlign.Center,
+//             modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(0.dp,150.dp)
+            )
+        }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun BoxExample2(){
+    Box(
+        modifier = Modifier
+            .background(Color.Magenta)
+            .padding(5.dp)
+            .size(250.dp)
+    ){
+        Text(text = "TopStart", Modifier.align(Alignment.TopStart))//izquierda
+        Text(text = "TopEnd", Modifier.align(Alignment.TopEnd))//derecha
+        Text(text = "CenterStart", Modifier.align(Alignment.CenterStart))//centro
+        Text(text = "Center", Modifier.align(Alignment.Center))//centro
+        Text(text = "CenterEnd", Modifier.align(Alignment.CenterEnd))//centro
+        Text(text = "BottomStar", Modifier.align(Alignment.BottomStart))//izquierda
+        Text(text = "BottomEnd", Modifier.align(Alignment.BottomEnd))//derecha
+    }
+}
+
