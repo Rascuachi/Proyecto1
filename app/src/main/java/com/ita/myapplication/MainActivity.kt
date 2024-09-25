@@ -12,6 +12,7 @@ import com.ita.myapplication.ui.screens.MenuScreen
 import androidx.navigation.compose.composable
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Surface
+import com.ita.myapplication.ui.screens.ComponentsScreen
 import com.ita.myapplication.ui.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
@@ -48,6 +49,9 @@ fun SetupNavGraph(navController: NavHostController) {
         }
         composable("menu") {
             MenuScreen(navController)
+        }
+        composable("components"){
+            ComponentsScreen(navController)
         }
     }
 }

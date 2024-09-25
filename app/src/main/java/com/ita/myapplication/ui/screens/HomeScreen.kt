@@ -14,6 +14,9 @@ fun HomeScreen(navController: NavController) {
         Button(onClick = { navController.navigate("menu") }) {
             Text(text = "Go to Menu")
         }
+        Button(onClick = { navController.navigate("components") }) {
+            Text(text = "Go to components")
+        }
     }
 }
 
