@@ -5,9 +5,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
-@Composable
-fun MenuScreen(navController: NavController) {
-    Column {
-        Text(text = "This is the menu screen")
-    }
+
+import androidx.compose.ui.graphics.vector.ImageVector
+
+data class MenuModel(
+    val id: Int,
+    val title: String,
+    val option: String,
+    val icon: ImageVector
+){
+
 }
