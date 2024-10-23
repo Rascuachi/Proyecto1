@@ -137,7 +137,7 @@ fun ComponentsScreen(navController: NavController) {
         MenuModels(12,"AlertDialogs","AlertDialogs",Icons.Filled.Warning),
         MenuModels(13,"SnackBars","SnackBars",Icons.Filled.Settings),
         MenuModels(14,"Bars","Bars",Icons.Filled.Person),
-        MenuModels(15,"Bars","Bars",Icons.Filled.Person),
+        MenuModels(15,"Adaptive","Adaptive",Icons.Filled.Warning)
 
     )
 
@@ -329,38 +329,47 @@ fun ComponentsScreen(navController: NavController) {
 
         Column {
             when(component){//switchcasse
-                "Content1"->{
+                "Content1" -> {
                     Content1()
                 }
-                "Content2"->{
+                "Content2" ->{
                     Content2()
                 }
-                "floating-buttons"->{
+                "Buttons" ->{
+                    Buttons()
+                }
+                "Floating" ->{
                     FloatingButtons()
                 }
-                "chips"->{
+                "Chips" ->{
                     Chips()
                 }
-                "progress"->{
+                "Progress"->{
                     Progress()
                 }
-                "sliders"->{
+                "Sliders"->{
                     Sliders()
                 }
-                "switches"->{
-                   Switches()
+                "Switches"->{
+                    Switches()
                 }
-                "badges"->{
+                "Badges"->{
                     Badges()
                 }
-                "date-pickers"->{
-                    DatePickers()
-                }
-                "time-pickers"->{
+                "TimePickers" ->{
                     TimePickers()
                 }
-                "snack-bars"->{
+                "DatePickers"->{
+                    DatePickers()
+                }
+                "AlertDialogs"->{ //Notify the user a task done
+                    AlterDialogs()
+                }
+                "SnackBars"->{ //A dialog prompt to confirm
                     SnackBars()
+                }
+                "Bars"->{
+                    Bars()
                 }
                 "Adaptive"->{
                     Adaptive()

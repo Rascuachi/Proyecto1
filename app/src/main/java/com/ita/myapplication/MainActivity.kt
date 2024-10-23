@@ -1,4 +1,5 @@
 package com.ita.myapplication
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,37 +9,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.ita.myapplication.ui.screens.MenuScreen
 import androidx.navigation.compose.composable
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Surface
+import com.ita.myapplication.ui.screens.MenuScreen
 import com.ita.myapplication.ui.screens.ComponentsScreen
 import com.ita.myapplication.ui.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) { //se crea interfaz
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent{
+        setContent {
             ComposableMultiScreenApp()
-        }//end setContent
-    }//end ComponentACtivity
-}//end MainActivity
+        }
+    }
+}
 
 @Composable
-fun ComposableMultiScreenApp(){
-    val navController = rememberNavController()/*
-    objeto navController, transisión entre pantallas
-    */
-    Surface(//dibujar en pantalla
-        modifier = Modifier.fillMaxSize(),//ocupa toda la pantalla
+fun ComposableMultiScreenApp() {
+    val navController = rememberNavController() // Objeto navController para manejar la navegación
+    Surface(
+        modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        SetupNavGraph(navController = navController) /*
-        pasa navController como argumento hacia la función SetupNavGraph
-        */
+        SetupNavGraph(navController = navController)
     }
-
-
 }
 
 @Composable
@@ -50,7 +45,7 @@ fun SetupNavGraph(navController: NavHostController) {
         composable("menu") {
             MenuScreen(navController)
         }
-        composable("components"){
+        composable("components") {
             ComponentsScreen(navController)
         }
     }
