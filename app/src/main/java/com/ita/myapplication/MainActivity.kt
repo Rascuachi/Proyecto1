@@ -15,6 +15,7 @@ import androidx.compose.material3.Surface
 import com.ita.myapplication.ui.screens.MenuScreen
 import com.ita.myapplication.ui.screens.ComponentsScreen
 import com.ita.myapplication.ui.screens.HomeScreen
+import com.ita.myapplication.ui.screens.LoginScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ fun ComposableMultiScreenApp() {
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(navController = navController, startDestination = "login") {
         composable("home") {
             HomeScreen(navController)
         }
@@ -47,6 +48,9 @@ fun SetupNavGraph(navController: NavHostController) {
         }
         composable("components") {
             ComponentsScreen(navController)
+        }
+        composable("login") {
+            LoginScreen(navController)
         }
     }
 }
